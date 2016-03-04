@@ -82,7 +82,7 @@
       $("#records table").append("</table>");
     }
 
-    var token = 'pMvBFsQGgph5VWsaA_WqDIXT3TFycl_SWmbYpLeTDxqu8kysEWze8zX4ede8N8x5XeAELeXUIg3rbDFc6fvrR8NXv-lrid-SGWP0FYL3liP-tnHequD4o2PXVtDT7mPhzQ6YnvFzB_9CmLMmqhujPCy6Pp0vOSoo6YqojzynKlYWdAPqpI_YtwtyU96n59wc4GbItcwC07m84gjrvCo4zgHbrvRBMUsK76gdx4hrcZKWw7taevdddt1sv3G4CYW89n9uQeM4q4L3QNWZ5KLuTeNIgnbWc_ZH7akfSSl1eqLW5cKnL7Q7OIqU1K_ph1cufryb-xBr9YlNrtN3fgLW-Vyl2UjMPhFwW3yBkJ7IKX84FhKJPLKb6bXLnIEQgfbieFT_AoElRsLbA0KSOIoOfGG2A2wFW2ttggX2MObpfPNSYjImm61l3j4cXm_KjGM70';
+    var token = 'CuZ8u-IMvt2lRIcOG9y9ky4J-rfMkRMjFt5d_qWj1Gr8P0MMLhVltHeVstEgeMZZM-aSV_ZAFGQtw4OPTO7yHMY4h82wg1-7FeCJvSr6vo5Z_JRDZqe15bBLF_j2vOss7b32OIHEaDIFmW-l7c5ylX8kbuS_LCj4567SsiuFdTBQ-lfPye2WoKhrdRcpakcaE7yBd1Vbz6FgMYavk4DzUksrF7gzAwc7TRr-kwTik-7Mv8XNKNliHCyiw_9N39lewmKABZk1KTnJbODhi-rrSFvVoS3waMCnoTaNcNtkqqe63ZCxmhegrTeOQk0ZGvAb8LVSBLuFARWg2SKVeODkloBy4_c6LRRlZWUiWR2SB9PJQF06j-6rhbxDONMsJiSJigDiN0QqcQgQw-s5Ef8Q6qCnomimTpt1sOzpwSDbvaU1';
 
      $(document).ready(function() {
 
@@ -93,7 +93,7 @@
       console.log(JSON.stringify(data));
       
       $.ajax({
-        url: 'https://apis.accela.com/v4/search/records',
+        url: 'https://apis.accela.com/v4/search/records?expand=addresses',
         type: "POST",
         beforeSend: setHeaders,
         data: JSON.stringify(data),
