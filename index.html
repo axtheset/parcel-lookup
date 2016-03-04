@@ -71,13 +71,26 @@
       return baseUrl + "?Module=" + module + "&TabName=" + module + "&capID1=" + recordIdArray[1] + "&capID2=" + recordIdArray[2] + "&capID3=" + recordIdArray[3]; 
     }
 
+    function buildAddress(data) {
+      //console.log(data);
+      var address = "";
+      if (data.streetStart) address += data.streetStart.toString();
+      if (data.direction) address += " " + data.direction.text;
+      if (data.streetName) address += " " + data.streetName;
+      if (data.streetSuffix) address += " " + data.streetSuffix.text;
+      if (data.city) address += ", " + data.city;
+      if (data.state) address += " " + data.state.text;
+      if (data.postalCode) address += ", " + data.postalCode;
+      return address;
+    }
+
     function displayResults(data) {
       //console.log(data);
       $("#working").hide();
       $("#records").append("<table class=\"table table-striped table-bordered table-hover\">");
       for(var i=0; i<data.result.length; i++) {
         var acaUrl = "https://aca.accela.com/leonco/Cap/CapDetail.aspx?Module=Building&TabName=Building&capID1=15CBL&capID2=00000&capID3=00209"
-        $("#records table").append("<tr><td>" +  data.result[i].statusDate + "</td><td><a class=\"details\" target=\"_blank\" href=\"" + buildACAUrl('https://acasupp3.accela.com/leonco/Cap/CapDetail.aspx',data.result[i].type.group,data.result[i].id) + "\">" + data.result[i].customId + "</a></td><td>" + data.result[i].type.text + "</td><td>" + data.result[i].status.text + "</td>" + + "<td></td></tr>")
+        $("#records table").append("<tr><td><a class=\"details\" target=\"_blank\" href=\"" + buildACAUrl('https://acasupp3.accela.com/leonco/Cap/CapDetail.aspx',data.result[i].type.group,data.result[i].id) + "\">" + data.result[i].customId + "</a></td><td>" + data.result[i].type.text + "</td><td>" + data.result[i].status.text + "</td><td>" + data.result[i].parcels[0].parcelNumber + "</td><td>" + buildAddress(data.result[i].addresses[0]) + "</td></tr>")
       }
       $("#records table").append("</table>");
     }
@@ -93,7 +106,7 @@
       console.log(JSON.stringify(data));
       
       $.ajax({
-        url: 'https://apis.accela.com/v4/search/records?expand=addresses',
+        url: 'https://apis.accela.com/v4/search/records?expand=addresses,parcels',
         type: "POST",
         beforeSend: setHeaders,
         data: JSON.stringify(data),
